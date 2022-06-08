@@ -1,46 +1,38 @@
-import { useEffect, useState } from "react";
-import "../stylesheets/experiencesCard-stylesheet.css";
-import Experience from "./Experience";
+import { useEffect, useState } from 'react'
+import '../stylesheets/experiencesCard-stylesheet.css'
+import Experience from './Experience'
 
 const ExperiencesCard = (props) => {
-  const [experiences, setExperiences] = useState([]);
-  const [action, setAction] = useState();
-  console.log("what action? ", action);
+  const [experiences, setExperiences] = useState([])
+  const [action, setAction] = useState()
+  console.log('what action? ', action)
   const getAction = (action) => {
-    setAction(action);
-  };
+    setAction(action)
+  }
 
-  console.log("main state:", experiences);
+  console.log('main state:', experiences)
 
   const fetchNewId = async (id) => {
     try {
-      const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences`,
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU2YmQxZGE5MDIzOTAwMTVkOTY1YzgiLCJpYXQiOjE2NTE1Nzc5MTAsImV4cCI6MTY1Mjc4NzUxMH0.dsdmzZvDcP2azLGh2MGVZ8-C7UCxWzuy8sAPtKFDYg4",
-          },
-        }
-      );
+      const response = await fetch(`https://linkedin-backend-sarah-leon.herokuapp.com/experiences`, {})
       if (response.ok) {
-        const data = await response.json();
+        const data = await response.json()
 
-        setExperiences(data);
-        console.log("Fetched data: ", data);
+        setExperiences(data)
+        console.log('Fetched data: ', data)
       }
     } catch (error) {
-      console.log("error", error);
+      console.log('error', error)
     }
-  };
+  }
   useEffect(() => {
-    console.log("props prof: ", props.profileId);
+    console.log('props prof: ', props.profileId)
     if (props.profileId) {
-      fetchNewId(props.profileId);
+      fetchNewId(props.profileId)
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.profileId, props.profiledata]);
+  }, [props.profileId, props.profiledata])
 
   return (
     <div className="sidebar-container  ">
@@ -64,6 +56,6 @@ const ExperiencesCard = (props) => {
         ))}
       {/* <ExperiencesUser users={user} /> */}
     </div>
-  );
-};
-export default ExperiencesCard;
+  )
+}
+export default ExperiencesCard
