@@ -34,7 +34,7 @@ export default function SinglePost({ post }) {
           <p>{post.text}</p>
         </Col>
       </Row>
-      <Row>{/* <img className="post-image" src={post.image} alt="bill" /> */}</Row>
+      <Row>{<img className="post-image" src={post.image} alt="bill" />}</Row>
       <Row className="likes-under-picture-row mt-2 small-text-size">
         <Col md={6}>
           <i className="bi bi-hand-thumbs-up"></i>
