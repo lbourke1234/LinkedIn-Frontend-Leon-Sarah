@@ -5,15 +5,7 @@ import EditExperience from './EditExperience'
 import AddExperience from './AddExperience'
 import { parseISO, format } from 'date-fns'
 
-const Experience = ({
-  allExperiences,
-  experience,
-  getaction,
-  setexperiences,
-  profiledata,
-  setprofiledata,
-  action
-}) => {
+const Experience = ({ allExperiences, experience, getaction, setexperiences, profiledata, setprofiledata, action }) => {
   const [modalShow, setModalShow] = useState(false)
   const [content, setContent] = useState()
   const [title, setTitle] = useState()
@@ -24,13 +16,11 @@ const Experience = ({
     try {
       let response = await fetch(
         `
-  https://striveschool-api.herokuapp.com/api/profile/${profiledata._id}/experiences/${experience._id}`,
+        https://linkedin-backend-sarah-leon.herokuapp.com/experiences/${experience._id}`,
         {
           method: 'PUT',
           body: JSON.stringify(editExp),
           headers: {
-            authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZmYzMwMzE3YzRlMDAwMTVkN2EwODIiLCJpYXQiOjE2NTE0OTE1ODgsImV4cCI6MTY1MjcwMTE4OH0.yS8YrZCAJfbhN7ye7OAqtaTyteCbwQsztG411czMp8s',
             'Content-type': 'application/json'
           }
         }
@@ -47,18 +37,9 @@ const Experience = ({
   }
   let delExperience = async () => {
     try {
-      let response = await fetch(
-        `
-  https://striveschool-api.herokuapp.com/api/profile/${profiledata._id}/experiences/${experience._id}`,
-        {
-          method: 'DELETE',
-
-          headers: {
-            authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZmYzMwMzE3YzRlMDAwMTVkN2EwODIiLCJpYXQiOjE2NTE0OTE1ODgsImV4cCI6MTY1MjcwMTE4OH0.yS8YrZCAJfbhN7ye7OAqtaTyteCbwQsztG411czMp8s'
-          }
-        }
-      )
+      let response = await fetch(`https://linkedin-backend-sarah-leon.herokuapp.com/experiences/${experience._id}`, {
+        method: 'DELETE'
+      })
 
       let data = await response.json()
 
@@ -71,19 +52,13 @@ const Experience = ({
   }
   let postExperience = async () => {
     try {
-      let response = await fetch(
-        `
-  https://striveschool-api.herokuapp.com/api/profile/${profiledata._id}/experiences/`,
-        {
-          method: 'POST',
-          body: JSON.stringify(postExp),
-          headers: {
-            authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZmYzMwMzE3YzRlMDAwMTVkN2EwODIiLCJpYXQiOjE2NTE0OTE1ODgsImV4cCI6MTY1MjcwMTE4OH0.yS8YrZCAJfbhN7ye7OAqtaTyteCbwQsztG411czMp8s',
-            'Content-type': 'application/json'
-          }
+      let response = await fetch('https://linkedin-backend-sarah-leon.herokuapp.com/experiences', {
+        method: 'POST',
+        body: JSON.stringify(postExp),
+        headers: {
+          'Content-type': 'application/json'
         }
-      )
+      })
 
       let data = await response.json()
 
@@ -94,6 +69,7 @@ const Experience = ({
       console.log('❌ something went wrong ON POST: ', error)
     }
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setprofiledata(profiledata), [editExp])
   return (
     <div className="row d-flex  justify-content-between">
@@ -102,9 +78,9 @@ const Experience = ({
           src={
             editExp.image
               ? editExp.image
-              : "https://previews.123rf.com/images/roxanabalint/roxanabalint1701/roxanabalint170100138/69079014-nicht-verf%C3%BCgbar-grunge-stempel-auf-wei%C3%9Fen-hintergrund-vektor-illustration.jpg"
+              : 'https://previews.123rf.com/images/roxanabalint/roxanabalint1701/roxanabalint170100138/69079014-nicht-verf%C3%BCgbar-grunge-stempel-auf-wei%C3%9Fen-hintergrund-vektor-illustration.jpg'
           }
-          style={{ height: "65px", width: "65px", objectFit: "cover" }}
+          style={{ height: '65px', width: '65px', objectFit: 'cover' }}
           alt="CBS"
         />
       </div>
