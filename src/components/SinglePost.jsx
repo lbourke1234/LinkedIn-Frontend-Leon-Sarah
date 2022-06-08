@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import FeedPostMainContainerModal from './FeedPostMainContainerModal'
-import { Container, Row, Col } from 'react-bootstrap'
-import './stylesheets/feedPostMainContainer.css'
+import React, { useState } from "react"
+import FeedPostMainContainerModal from "./FeedPostMainContainerModal"
+import { Container, Row, Col } from "react-bootstrap"
+import "./stylesheets/feedPostMainContainer.css"
 
 export default function SinglePost({ post }) {
   const [modalShow, setModalShow] = useState(false)
@@ -21,7 +21,7 @@ export default function SinglePost({ post }) {
         <Col md={8} className="padding-for-middle-row">
           <Row>
             <span className="big-text-size">
-              {post.user.name + ' ' + post.user.surname}
+              {post.user.name + " " + post.user.surname}
             </span>
           </Row>
           <Row>
@@ -34,7 +34,7 @@ export default function SinglePost({ post }) {
         <Col md={2} className="d-flex justify-content-end">
           <i
             className="bi bi-three-dots"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             onClick={() => {
               setModalShow(true)
             }}
