@@ -1,16 +1,8 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import UploadExperiencePicture from './UploadExperiencePicture'
-const EditExperience = ({
-  setEditExp,
-  experience,
-  setexperiences,
-  allExperiences,
-  editExp,
-  profiledata,
-  setprofiledata
-}) => {
+const EditExperience = ({ setEditExp, experience, putExperience }) => {
   const [userExperience, setUserExperience] = useState(experience)
 
   let change = (e, field) => {
@@ -30,6 +22,7 @@ const EditExperience = ({
   return (
     <Form>
       <h1>Edit Experience</h1>
+      {console.log('USER EXPERIENCE: ', userExperience)}
       <Form.Group>
         <br />
         <Form.Control value={userExperience.role} type="text" placeholder="Role" onChange={(e) => change(e, 'role')} />

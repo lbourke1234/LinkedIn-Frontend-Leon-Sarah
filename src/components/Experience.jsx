@@ -5,7 +5,7 @@ import EditExperience from './EditExperience'
 import AddExperience from './AddExperience'
 import { parseISO, format } from 'date-fns'
 
-const Experience = ({ allExperiences, experience, getaction, setexperiences, profiledata, setprofiledata, action }) => {
+const Experience = ({ experience, getaction, setexperiences, profiledata, setprofiledata, action }) => {
   const [modalShow, setModalShow] = useState(false)
   const [content, setContent] = useState()
   const [title, setTitle] = useState()
@@ -14,16 +14,13 @@ const Experience = ({ allExperiences, experience, getaction, setexperiences, pro
 
   let putExperience = async () => {
     try {
-      let response = await fetch(
-        `https://linkedin-backend-sarah-leon.herokuapp.com/experiences/${experience._id}/picture`,
-        {
-          method: 'PUT',
-          body: JSON.stringify(editExp),
-          headers: {
-            'Content-type': 'application/json'
-          }
+      let response = await fetch(`https://linkedin-backend-sarah-leon.herokuapp.com/experiences/${experience._id}`, {
+        method: 'PUT',
+        body: JSON.stringify(editExp),
+        headers: {
+          'Content-type': 'application/json'
         }
-      )
+      })
 
       let data = await response.json()
 
@@ -69,7 +66,11 @@ const Experience = ({ allExperiences, experience, getaction, setexperiences, pro
     }
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => setprofiledata(profiledata), [editExp])
+  useEffect(() => {
+    setprofiledata(profiledata)
+    // putExperience()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editExp])
   return (
     <div className="row d-flex  justify-content-between">
       <div className="col-2 d-flex justify-content-center ">
@@ -134,6 +135,7 @@ const Experience = ({ allExperiences, experience, getaction, setexperiences, pro
                 setexperiences={setexperiences}
                 setEditExp={setEditExp}
                 editExp={editExp}
+                putExperience={putExperience}
               />
             ))
           }}
@@ -152,6 +154,9 @@ const Experience = ({ allExperiences, experience, getaction, setexperiences, pro
         content={content}
         title={title}
         onHide={() => setModalShow(false)}
+        editExp={editExp}
+        putExperience={putExperience}
+        postExperience={postExperience}
       />
     </div>
   )
