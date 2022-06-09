@@ -1,12 +1,12 @@
-import React from 'react'
-import { Form } from 'react-bootstrap'
-import { useEffect, useState } from 'react'
+import React from "react"
+import { Form } from "react-bootstrap"
+import { useEffect, useState } from "react"
 
 const EditJumbotronForm = (props) => {
   const [newData, setNewData] = useState(props.profiledata)
 
-  console.log('newData: ', newData)
-  console.log('props: ', props.profiledata)
+  console.log("newData: ", newData)
+  console.log("props: ", props.profiledata)
   useEffect(() => setNewData(props.profiledata), [])
 
   return (
@@ -17,36 +17,44 @@ const EditJumbotronForm = (props) => {
           value={props.profiledata.name}
           type="text"
           placeholder="First Name"
-          onChange={(e) => props.editprofiledata(e, 'name')}
+          onChange={(e) => props.editprofiledata(e, "name")}
         />
         <br />
         <Form.Control
           value={props.profiledata.surname}
           type="text"
           placeholder="Last name"
-          onChange={(e) => props.editprofiledata(e, 'surname')}
+          onChange={(e) => props.editprofiledata(e, "surname")}
         />
         <br />
         <Form.Group
           value={props.profiledata.email}
           type="email"
           placeholder="Email"
-          onChange={(e) => props.editprofiledata(e, 'email')}
+          onChange={(e) => props.editprofiledata(e, "email")}
         ></Form.Group>
 
         <br />
         <Form.Group
           value={props.profiledata.bio}
           type="text"
-          controlId="exampleForm.ControlTextarea1"
-          onChange={(e) => props.editprofiledata(e, 'bio')}
+          // controlId="exampleForm.ControlTextarea1"
+          onChange={(e) => props.editprofiledata(e, "bio")}
         >
           <Form.Control as="textarea" rows={3} placeholder="Bio" />
         </Form.Group>
         <br />
-        <Form.Control value={props.profiledata.title} type="text" placeholder="Title" />
+        <Form.Control
+          value={props.profiledata.title}
+          type="text"
+          placeholder="Title"
+        />
         <br />
-        <Form.Control value={props.profiledata.area} type="text" placeholder="Location" />
+        <Form.Control
+          value={props.profiledata.area}
+          type="text"
+          placeholder="Location"
+        />
         <br />
       </Form.Group>
     </Form>
