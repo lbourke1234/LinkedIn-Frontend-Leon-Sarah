@@ -5,9 +5,9 @@ import { Form, FormControl, InputGroup } from 'react-bootstrap'
 import '../stylesheets/feedStartAPostModal-stylesheet.css'
 
 let FeedStartAPostModal = (props) => {
-  useEffect(() => {
-    console.log(props.text)
-  }, [props.text])
+  //   useEffect(() => {
+  //     console.log(props.text)
+  //   }, [props.text])
 
   return (
     <div className="the-whole-modal">

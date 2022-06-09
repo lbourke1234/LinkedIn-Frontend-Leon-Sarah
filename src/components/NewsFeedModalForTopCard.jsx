@@ -89,6 +89,7 @@ const NewsFeedModalForTopCard = (props) => {
 
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+      {console.log(props)}
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">{props.title}</Modal.Title>
       </Modal.Header>
@@ -150,9 +151,9 @@ const NewsFeedModalForTopCard = (props) => {
               //     ".form-text-area"
               //   ).value
               // )
-              setUserInputData(
-                event.currentTarget.parentNode.parentNode.parentNode.parentNode.querySelector('.form-text-area').value
-              )
+              // setUserInputData(
+              //   event.currentTarget.parentNode.parentNode.parentNode.parentNode.querySelector('.form-text-area').value
+              // )
 
               props.onHide()
             }}
