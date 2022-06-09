@@ -5,9 +5,7 @@ const ProfileModal = (props) => {
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {props.title}
-        </Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">{props.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="show-grid">
         <Container>{props.content}</Container>
@@ -16,9 +14,13 @@ const ProfileModal = (props) => {
         <Button
           type="onSubmit"
           onClick={() => {
-            console.log('Click')
-            props.putprofiledata()
             props.onHide()
+            if (props.title === 'Add Experience') {
+              props.postExperience()
+            } else {
+              props.putExperience(props.editexp)
+            }
+            props.putprofiledata()
           }}
         >
           Save

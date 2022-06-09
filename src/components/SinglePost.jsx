@@ -8,25 +8,12 @@ export default function SinglePost({ post }) {
 
   return (
     <Container className="feed-post-main-container" key={post._id}>
+      {/* {console.log(post.user.image)} */}
       <Row className="top-row">
-        <Col md={2}>
-          <img
-            className="profile-image"
-            src={post.user.image}
-            alt="profile"
-            height="70px"
-            width="70px"
-          />
-        </Col>
+        <Col md={2}>{post.user && <img className="profile-image" src={post.user.image} alt="profile" height="70px" width="70px" />}</Col>
         <Col md={8} className="padding-for-middle-row">
-          <Row>
-            <span className="big-text-size">
-              {post.user.name + ' ' + post.user.surname}
-            </span>
-          </Row>
-          <Row>
-            <span className="small-text-size">{post.user.title}</span>
-          </Row>
+          <Row>{post.user && <span className="big-text-size">{post.user.name + ' ' + post.user.surname}</span>}</Row>
+          <Row>{post.user && <span className="small-text-size">{post.user.title}</span>}</Row>
           <Row>
             <span className="small-text-size">{post.createdAt}</span>
           </Row>
@@ -39,12 +26,7 @@ export default function SinglePost({ post }) {
               setModalShow(true)
             }}
           ></i>
-          <FeedPostMainContainerModal
-            show={modalShow}
-            postData={post}
-            title={<p>Edit Your post</p>}
-            onHide={() => setModalShow(false)}
-          />
+          <FeedPostMainContainerModal show={modalShow} postData={post} title={<p>Edit Your post</p>} onHide={() => setModalShow(false)} />
         </Col>
       </Row>
       <Row className="text-row">
@@ -52,9 +34,7 @@ export default function SinglePost({ post }) {
           <p>{post.text}</p>
         </Col>
       </Row>
-      <Row>
-        <img className="post-image" src={post.image} alt="bill" />
-      </Row>
+      <Row>{<img className="post-image" src={post.image} alt="bill" />}</Row>
       <Row className="likes-under-picture-row mt-2 small-text-size">
         <Col md={6}>
           <i className="bi bi-hand-thumbs-up"></i>
