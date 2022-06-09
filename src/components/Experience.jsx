@@ -15,8 +15,7 @@ const Experience = ({ allExperiences, experience, getaction, setexperiences, pro
   let putExperience = async () => {
     try {
       let response = await fetch(
-        `
-        https://linkedin-backend-sarah-leon.herokuapp.com/experiences/${experience._id}`,
+        `https://linkedin-backend-sarah-leon.herokuapp.com/experiences/${experience._id}/picture`,
         {
           method: 'PUT',
           body: JSON.stringify(editExp),
@@ -155,52 +154,6 @@ const Experience = ({ allExperiences, experience, getaction, setexperiences, pro
         onHide={() => setModalShow(false)}
       />
     </div>
-    // </div>
-
-    // <div className="outer-lower-container m-3">
-    //   <div>
-    //     <img
-    //       src="https://www.pngkey.com/png/full/240-2401662_cbs-logo-vertical-notext-blue-rgb-copenhagen-business.png"
-    //       className="education-logo"
-    //       alt="CBS"
-    //     />
-    //   </div>
-    //   <div className="text-next-to-logo">
-    //     <div>
-    //       <h5 className="header-text">{user.role}</h5>
-    //     </div>
-    //     <p className="text-under-header">{user.company}</p>
-    //     <p className="year-text">
-    //       {user.startDate} - {user.endDate}
-    //     </p>
-
-    //     <p className="year-text">{user.area}</p>
-    //   </div>
-    //   <div>
-    //     <i
-    //       className="bi bi-plus-lg  plus-icon m-2"
-    //       onClick={() => {
-    //         setModalShow(true);
-    //         setContent(() => <h1>{"I am plus"}</h1>);
-    //       }}
-    //     ></i>
-
-    //     <i
-    //       className="bi bi-pencil  plus-icon m-2"
-    //       onClick={() => {
-    //         setModalShow(true);
-    //         setContent(() => (
-    //           <AddExperience user={user} edituserdata={edituserdata} />
-    //         ));
-    //       }}
-    //     ></i>
-    //   </div>
-    //   <ProfileModal
-    //     show={modalShow}
-    //     content={content}
-    //     onHide={() => setModalShow(false)}
-    //   />
-    // </div>
   )
 }
 

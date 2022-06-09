@@ -15,11 +15,7 @@ let NavBar = () => {
               </Link>
             </Navbar.Brand>
             <Form inline>
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
-              />
+              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             </Form>
           </div>
           <div>
@@ -58,7 +54,7 @@ let NavBar = () => {
                   <p className="text-under-icon">Notifications</p>
                 </div>
                 <div className="icons-and-texts-together the-me-icon">
-                  <Link to={'/profile-page'} className="nav-icon-outer">
+                  <Link to={'/profile-page/629f094cd81f2b9bc7cde6e2'} className="nav-icon-outer">
                     <i className="bi bi-circle nav-icon"></i>
                     <p className="text-under-icon">Me ▼</p>
                   </Link>

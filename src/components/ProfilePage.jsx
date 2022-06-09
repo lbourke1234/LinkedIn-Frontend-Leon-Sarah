@@ -11,7 +11,6 @@ import EducationCard from './EducationCard'
 
 const ProfilePage = ({ profiledata, setprofiledata }) => {
   const [allProfiles, setAllProfiles] = useState([])
-  // const [experiencesId, setExperiencesId] = useState('')
   const [profile, setProfile] = useState()
 
   const editProfileData = (e, field) => {
@@ -24,10 +23,13 @@ const ProfilePage = ({ profiledata, setprofiledata }) => {
 
   const putProfileData = async () => {
     try {
-      const response = await fetch('https://linkedin-backend-sarah-leon.herokuapp.com/profile/629f094cd81f2b9bc7cde6e2', {
-        method: 'PUT',
-        body: JSON.stringify(profiledata)
-      })
+      const response = await fetch(
+        'https://linkedin-backend-sarah-leon.herokuapp.com/profile/629f094cd81f2b9bc7cde6e2',
+        {
+          method: 'PUT',
+          body: JSON.stringify(profiledata)
+        }
+      )
 
       const data = await response.json()
 
@@ -47,8 +49,7 @@ const ProfilePage = ({ profiledata, setprofiledata }) => {
     setAllProfiles(data)
   }
   const fetchProfileData = async (userId) => {
-    const linkToFetch = `https://linkedin-backend-sarah-leon.herokuapp.com/profile/${userId}`
-    const response = await fetch(linkToFetch, {})
+    const response = await fetch(`https://linkedin-backend-sarah-leon.herokuapp.com/profile/${userId}`)
 
     const data = await response.json()
 
@@ -57,24 +58,27 @@ const ProfilePage = ({ profiledata, setprofiledata }) => {
   let params = useParams()
   useEffect(() => {
     fetchAllProfiles()
-    console.log('PARAMS', params.userId)
-    if (params !== 'undefined') {
-      fetchProfileData(params.userId)
-    } else {
-      setProfile(profiledata)
-    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    fetchProfileData(params.userId)
+  }, [params.userId])
+
   return (
     <Container>
-      {console.log('this data is important:', profile)}
+      {/* {console.log('this data is important:', profile)} */}
       <Row>
         <Col md={8}>
           {profile ? (
             <ProfileJumbotron profiledata={profile} editprofiledata={editProfileData} putprofiledata={putProfileData} />
           ) : (
-            <ProfileJumbotron profiledata={profiledata} editprofiledata={editProfileData} putprofiledata={putProfileData} />
+            <ProfileJumbotron
+              profiledata={profiledata}
+              editprofiledata={editProfileData}
+              putprofiledata={putProfileData}
+            />
           )}
 
           {profile ? (

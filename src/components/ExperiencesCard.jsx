@@ -1,38 +1,40 @@
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import '../stylesheets/experiencesCard-stylesheet.css'
 import Experience from './Experience'
 
 const ExperiencesCard = (props) => {
   const [experiences, setExperiences] = useState([])
   const [action, setAction] = useState()
-  console.log('what action? ', action)
+  // console.log('what action? ', action)
   const getAction = (action) => {
     setAction(action)
   }
 
-  console.log('main state:', experiences)
+  // console.log('main state:', experiences)
 
   const fetchNewId = async (id) => {
     try {
-      const response = await fetch(`https://linkedin-backend-sarah-leon.herokuapp.com/experiences`, {})
+      const response = await fetch(`https://linkedin-backend-sarah-leon.herokuapp.com/experiences/`)
       if (response.ok) {
         const data = await response.json()
+        const userExperiences = data.filter((exp) => exp.profile === id)
 
-        setExperiences(data)
-        console.log('Fetched data: ', data)
+        setExperiences(userExperiences)
+        // console.log('Fetched data: ', )
       }
     } catch (error) {
       console.log('error', error)
     }
   }
-  useEffect(() => {
-    console.log('props prof: ', props.profileId)
-    if (props.profileId) {
-      fetchNewId(props.profileId)
-    }
 
+  let params = useParams()
+
+  useEffect(() => {
+    fetchNewId(params.userId)
+    console.log('EXPERIENCES: ', experiences)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.profileId, props.profiledata])
+  }, [params.userId])
 
   return (
     <div className="sidebar-container  ">
