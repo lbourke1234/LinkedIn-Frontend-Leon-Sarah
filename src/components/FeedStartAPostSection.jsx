@@ -22,14 +22,12 @@ let FeedStartAPostSection = (props) => {
             onClick={() => {
               setModalShow(true)
             }}
-            onChange={(event) => {
-              setText(event.target.value)
-              console.log('event', event.target.value)
-              console.log('text', text)
-            }}
           />
         </Form>
         <NewsFeedModalForTopCard
+          profileData={props.profileData}
+          text={text}
+          setText={setText}
           show={modalShow}
           content={<FeedStartAPostModal profiledata={props.profiledata} text={text} setText={setText} />}
           title={<p>Create a post</p>}

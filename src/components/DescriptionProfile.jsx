@@ -1,47 +1,51 @@
-import React from "react";
-import { Row, Col } from "react-bootstrap";
+import React from 'react'
+import { Row, Col } from 'react-bootstrap'
 
 const DescriptionProfile = ({ profiledata }) => {
+  const fetchPDF = async (profiledata) => {
+    console.log('click')
+    console.log(profiledata)
+    const response = await fetch(
+      `https://linkedin-backend-sarah-leon.herokuapp.com/profile/629f094cd81f2b9bc7cde6e2/CV`
+    )
+    if (response.ok) {
+      console.log('response is ok')
+      const body = await response.json()
+      console.log('BODY', body)
+    }
+  }
+
   return (
     <div>
       <Row className="description-section">
         <Col md={9}>
           <div className="bio-text">
-            <h3>{profiledata.name + " " + profiledata.surname} </h3>
+            <h3>{profiledata.name + ' ' + profiledata.surname} </h3>
             <p>{profiledata.bio}</p>
           </div>
           <div>
-            <p style={{ textAlign: "start", marginLeft: "2rem" }}>
+            <p style={{ textAlign: 'start', marginLeft: '2rem' }}>
               {profiledata.area}
-              <a href="#" className="links " style={{ marginLeft: "0.5rem" }}>
+              <a href="#" className="links " style={{ marginLeft: '0.5rem' }}>
                 Contact Info
               </a>
             </p>
           </div>
           <div>
-            <p style={{ textAlign: "start", marginLeft: "2rem" }}>
+            <p style={{ textAlign: 'start', marginLeft: '2rem' }}>
               <a href="#" className="links ">
                 60 connections
               </a>
             </p>
           </div>
           <div className="d-flex ml-4 mb-2">
-            <button
-              type="button"
-              className="btn full-blue-btn text-white rounded-pill ml-1"
-            >
+            <button type="button" className="btn full-blue-btn text-white rounded-pill ml-1" onClick={() => fetchPDF()}>
               Open to
             </button>
-            <button
-              type="button"
-              className="btn blue-border-btn rounded-pill mx-2"
-            >
+            <button type="button" className="btn blue-border-btn rounded-pill mx-2">
               Add profile section
             </button>
-            <button
-              type="button"
-              className="btn gray-border-btn rounded-pill mx-2"
-            >
+            <button type="button" className="btn gray-border-btn rounded-pill mx-2">
               more
             </button>
           </div>
@@ -53,12 +57,9 @@ const DescriptionProfile = ({ profiledata }) => {
               <img
                 src="https://media-exp1.licdn.com/dms/image/C4D0BAQEFWO_s8a0FHQ/company-logo_200_200/0/1647618816994?e=2147483647&v=beta&t=hgwtIzbwPl5z4OGvOxQSn6QWkVk3C_GlW2lrqqbJkYA"
                 alt=""
-                width={"30px"}
+                width={'30px'}
               />
-              <a
-                href="https://www.linkedin.com/school/epicodeglobal/"
-                target="_blank"
-              >
+              <a href="https://www.linkedin.com/school/epicodeglobal/" target="_blank">
                 Strive School
               </a>
             </p>
@@ -66,7 +67,7 @@ const DescriptionProfile = ({ profiledata }) => {
         </Col>
       </Row>
     </div>
-  );
-};
+  )
+}
 
-export default DescriptionProfile;
+export default DescriptionProfile
